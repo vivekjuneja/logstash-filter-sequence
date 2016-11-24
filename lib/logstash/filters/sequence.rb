@@ -2,7 +2,7 @@ class LogStash::Filters::Sequence < LogStash::Filters::Base
   config_name "sequence"
   plugin_status "beta"
 
-  config :max, :validate => :number, :default => 10000
+  config :max, :validate => :number, :default => 10000000
 
   public
   def register
