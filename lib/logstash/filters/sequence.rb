@@ -6,7 +6,7 @@ class LogStash::Filters::Sequence < LogStash::Filters::Base
 
   public
   def register
-    @count = 1
+    @count = ENV["counter_seed"]
   end # def register
 
   public
@@ -14,7 +14,7 @@ class LogStash::Filters::Sequence < LogStash::Filters::Base
     return unless filter?(event)
     # Nothing to do
     event["sequence"] = @count
-    @count +=1
+    @count += ENV["counter_increment"]
     # Means that we can sequences up to @max events in the same millis from @timestamp
     @count = 1 if @count == @max 
     filter_matched(event)
